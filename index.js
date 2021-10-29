@@ -33,8 +33,8 @@ async function run() {
         app.get('/tourPlans/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            const service = await serviceCollection.findOne(query);
-            res.json(service);
+            const plan = await planCollection.findOne(query);
+            res.json(plan);
         })
 
         // POST API to get data by keys
