@@ -1,5 +1,5 @@
 {
-  "name": "go-courier-mongo-server",
+  "name": "birds-eye-tour-mongo-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@icon/heroicons-outline": "^0.4.2-alpha.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
