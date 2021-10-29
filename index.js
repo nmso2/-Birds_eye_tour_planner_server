@@ -29,6 +29,14 @@ async function run() {
             res.send(plans);
         })
 
+        // GET API (Get single services)
+        app.get('/tourPlans/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const service = await serviceCollection.findOne(query);
+            res.json(service);
+        })
+
         // POST API to get data by keys
         app.post('/tourPlans/byKeys', async (req, res) => {
             const keys = req.body;
