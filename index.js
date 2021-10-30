@@ -50,6 +50,14 @@ async function run() {
             res.send(plans);
         })
 
+        // GET API (Get single Purchase Plan)
+        app.get('/purchasePlan/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await purchaseCollection.findOne(query);
+            res.json(result);
+        })
+
         // DELETE API
         app.delete('/purchasePlan/:id', async (req, res) => {
             const id = req.params.id;
