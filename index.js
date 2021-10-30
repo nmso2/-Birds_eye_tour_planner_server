@@ -37,12 +37,18 @@ async function run() {
             res.json(plan);
         })
 
-        // POST API to add order
+        // POST API to Purchase Plans
         app.post('/purchasePlan', async (req, res) => {
             const order = req.body;
             const result = await purchaseCollection.insertOne(order);
             res.json(result);
         });
+        // GET API (Get all Purchase Plans)
+        app.get('/purchasePlan', async (req, res) => {
+            const cursor = purchaseCollection.find({});
+            const plans = await cursor.toArray();
+            res.send(plans);
+        })
     }
     finally {
         // await client.close();
