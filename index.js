@@ -69,12 +69,12 @@ async function run() {
         // UPDATE API
         app.put('/purchasePlan/:id', async (req, res) => {
             const id = req.params.id;
-            const updatedStatus = req.body;
+            const updatedPlan = req.body;
             const filter = {_id: ObjectId(id)};
             const options = {upsert: true};
             const updateDoc ={
                 $set:{
-                    confirmed: updatedStatus
+                    confirmed: updatedPlan.confirmed
                 },
             };
             const result = await purchaseCollection.updateOne(filter,updateDoc, options)
