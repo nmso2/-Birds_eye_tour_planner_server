@@ -22,6 +22,13 @@ async function run() {
         const planCollection = database.collection('tourPlans');
         const purchaseCollection = database.collection('purchasePlan');
 
+        // POST API to add Plans
+        app.post('/tourPlans', async (req, res) => {
+            const plan = req.body;
+            const result = await planCollection.insertOne(plan);
+            res.json(result);
+        });
+
         // GET API (Get all Plans)
         app.get('/tourPlans', async (req, res) => {
             const cursor = planCollection.find({});
@@ -37,12 +44,13 @@ async function run() {
             res.json(plan);
         })
 
-        // POST API to Purchase Plans
+        // POST API to add Purchase Plans
         app.post('/purchasePlan', async (req, res) => {
             const order = req.body;
             const result = await purchaseCollection.insertOne(order);
             res.json(result);
         });
+        
         // GET API (Get all Purchase Plans)
         app.get('/purchasePlan', async (req, res) => {
             const cursor = purchaseCollection.find({});
