@@ -50,7 +50,7 @@ async function run() {
             const result = await purchaseCollection.insertOne(order);
             res.json(result);
         });
-        
+
         // GET API (Get all Purchase Plans)
         app.get('/purchasePlan', async (req, res) => {
             const cursor = purchaseCollection.find({});
@@ -63,6 +63,21 @@ async function run() {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await purchaseCollection.findOne(query);
+            res.json(result);
+        })
+
+        // UPDATE API
+        app.put('/purchasePlan/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedPlan = req.body;
+            const filter = {_id: ObjectId(id)};
+            const options = {upsert: true};
+            const updateDoc ={
+                $set:{
+                    confirmed: updatedPlan.confirmed
+                },
+            };
+            const result = await purchaseCollection.updateOne(filter,updateDoc, options)
             res.json(result);
         })
 
